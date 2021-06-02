@@ -4,7 +4,7 @@
     class="favorites-modal j-c-center a-i-center"
     id="favorites-modal"
   >
-    {{ (modal.message + " " + modal.counter) }}
+    {{ modal.message + " " + modal.counter }}
   </div>
 </template>
 

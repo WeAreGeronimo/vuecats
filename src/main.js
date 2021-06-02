@@ -1,5 +1,4 @@
-import '@babel/env'
-import 'core-js/stable'
+import "core-js/stable";
 import { createApp } from "vue";
 import App from "./App.vue";
 

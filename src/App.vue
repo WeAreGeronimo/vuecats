@@ -1,5 +1,5 @@
 <template>
-  <Header />
+  <Header :catsArrayCount="catsArrayFromBackend.length" />
   <Main
     :catsArrayFromBackend="catsArrayFromBackend"
     :quantity="quantity"
@@ -24,7 +24,7 @@ export default {
     Header,
     Main,
     Footer,
-    FavoritesModal,
+    FavoritesModal
   },
   data: () => ({
     quantity: 6,
@@ -39,9 +39,9 @@ export default {
     sortingAgeCriteria: "toHighAge",
     favoritesModalSettings: {
       isShow: false,
-      message: '',
-      counter: null,
-    },
+      message: "",
+      counter: null
+    }
   }),
   created() {
     this.randomCats(359);
@@ -171,7 +171,8 @@ export default {
         isNeedDelete = false;
         console.log("pushed", this.favoritesCats);
         this.favoritesModalSettings.isShow = true;
-        this.favoritesModalSettings.message = 'Добавлено в избранное! В избранном:';
+        this.favoritesModalSettings.message =
+          "Добавлено в избранное! В избранном:";
         this.favoritesModalSettings.counter = this.favoritesCats.length;
       }
 
@@ -182,7 +183,8 @@ export default {
         });
         console.log("deleted", this.favoritesCats);
         this.favoritesModalSettings.isShow = true;
-        this.favoritesModalSettings.message = 'Удалено из избранного! В избранном:';
+        this.favoritesModalSettings.message =
+          "Удалено из избранного! В избранном:";
         this.favoritesModalSettings.counter = this.favoritesCats.length;
       }
 

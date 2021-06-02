@@ -7,7 +7,7 @@
   >
     <button
       class="main-like"
-      @click="cat.liked = !cat.liked, toggleFavorites(cat.id)"
+      @click="(cat.liked = !cat.liked), toggleFavorites(cat.id)"
     >
       <svg
         width="100%"

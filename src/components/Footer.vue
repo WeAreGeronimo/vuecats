@@ -2,17 +2,35 @@
   <section class="footer flex a-i-flex-start j-c-space-around">
     <div class="footer-buy flex flex-d-column j-c-center">
       <span class="footer-haveTime block">Успей купить!</span>
-      <span class="footer-promotions block">Подпишись и успей словить все акции</span>
+      <span class="footer-promotions block"
+        >Подпишись и успей словить все акции</span
+      >
     </div>
     <div class="footer-container flex a-i-flex-start">
       <div class="footer-emailsWrapper flex flex-d-column">
-        <input class="footer-email block" type="email" placeholder="Email" id="emailForNews">
-        <input class="footer-check" type="checkbox" id="news">
-        <label class="footer-newsSubscribe" for="news">Подписаться на новости</label>
+        <input
+          class="footer-email block"
+          type="email"
+          placeholder="Email"
+          id="emailForNews"
+          v-model="email"
+          @blur="correctEmail()"
+        />
+        <input class="footer-check" type="checkbox" id="news" />
+        <label class="footer-newsSubscribe" for="news"
+          >Подписаться на новости</label
+        >
         <div class="footer-tips" id="tips"></div>
         <span id="accept" style="display: none">✔</span>
       </div>
-      <button class="footer-subscribe" id="subscribe" onclick="subscribeToNews()">Подписаться</button>
+      <button
+        class="footer-subscribe"
+        id="subscribe"
+        :disabled="isDisabled"
+        @click="subscribeToNews()"
+      >
+        Подписаться
+      </button>
     </div>
   </section>
 </template>
@@ -21,18 +39,56 @@
 export default {
   name: "Footer",
   props: {
-    msg: String,
+    msg: String
   },
+  data: () => ({
+    email: null,
+    isDisabled: false
+  }),
+  methods: {
+    subscribeToNews() {
+      if (this.validateEmail(this.email)) {
+        if (this.correctEmail()) {
+          document.getElementById("subscribe").disabled = true;
+          document.getElementById("subscribe").innerText = "Спасибо!";
+        }
+      } else {
+        document.getElementById("accept").style.display = "none";
+        document.getElementById("tips").innerText =
+          "Введите, пожалуйста, действительный Email!";
+        document.getElementById("emailForNews").style.background = "#ff8585";
+      }
+    },
+
+    validateEmail(email) {
+      let regexp = /\S+@\S+\.\S+/;
+      return regexp.test(email);
+    },
+
+    correctEmail() {
+      if (this.validateEmail(this.email)) {
+        document.getElementById("tips").innerText = "";
+        document.getElementById("accept").style.display = "block";
+        document.getElementById("emailForNews").style.background = "#a6e269";
+        return true;
+      } else {
+        document.getElementById("accept").style.display = "none";
+        document.getElementById("tips").innerText =
+          "Введите, пожалуйста, действительный Email!";
+        document.getElementById("emailForNews").style.background = "#ff8585";
+        return false;
+      }
+    }
+  }
 };
 </script>
 
 <style lang="scss">
-
 .footer {
   width: 82%;
-  background: #1F2021;
+  background: #1f2021;
   margin: 5.188rem auto;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 
   &-buy {
     color: #ffffff;
@@ -58,14 +114,14 @@ export default {
   }
 
   &-email {
-    width: 18.750rem;
+    width: 18.75rem;
     font-family: inherit;
     border-radius: 10px;
     font-size: 0.875rem;
     line-height: 1.05rem;
     border: none;
     padding: 1.5rem 0 1.5rem 2.125rem;
-    margin: 0 0 1.250rem 0;
+    margin: 0 0 1.25rem 0;
     &:focus {
       outline: none;
     }
@@ -76,26 +132,25 @@ export default {
     font-size: 0.875rem;
     line-height: 1.063rem;
     color: #ffffff;
-    background: #6EBBD3;
+    background: #6ebbd3;
     border: none;
     border-radius: 10px;
     margin: 5.688rem 4rem 0 0;
     padding: 1.5rem 0;
   }
 
-
   &-check {
     display: none;
-    &+label {
+    & + label {
       display: inline-flex;
       align-items: center;
       user-select: none;
       font-weight: 400;
     }
-    &+label:before {
-      content: '';
-      width: 1.250rem;
-      height: 1.250rem;
+    & + label:before {
+      content: "";
+      width: 1.25rem;
+      height: 1.25rem;
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -104,15 +159,15 @@ export default {
       border-radius: 0.313rem;
       transition: all 0.25s ease-out;
     }
-    &:not(:disabled):active+label:before {
+    &:not(:disabled):active + label:before {
       background: #d6d6d6;
     }
-    &:not(:disabled):not(:checked)+label:hover:before {
+    &:not(:disabled):not(:checked) + label:hover:before {
       background: #0b5375;
     }
-    &:checked+label:before {
+    &:checked + label:before {
       content: "✔";
-      background: #6EBBD3;
+      background: #6ebbd3;
       color: black;
     }
   }
@@ -138,7 +193,6 @@ export default {
     color: #ffffff;
     font-size: 1rem;
   }
-
 }
 
 @-webkit-keyframes pulseSubscribe {
@@ -154,7 +208,8 @@ export default {
   }
 }
 
-@media screen and (min-width: 279px) and (max-width: 927px) and (orientation: portrait), (min-height: 279px) and (max-height: 541px) and (orientation: landscape) {
+@media screen and (min-width: 279px) and (max-width: 927px) and (orientation: portrait),
+  (min-height: 279px) and (max-height: 541px) and (orientation: landscape) {
   .footer {
     flex-wrap: wrap;
     width: 100%;
@@ -164,7 +219,9 @@ export default {
       width: 100%;
     }
 
-    &-subscribe, &-emailsWrapper, &-buy {
+    &-subscribe,
+    &-emailsWrapper,
+    &-buy {
       width: 80%;
     }
 
@@ -172,7 +229,8 @@ export default {
       margin: 2rem 0;
     }
 
-    &-emailsWrapper, &-subscribe {
+    &-emailsWrapper,
+    &-subscribe {
       margin: 0 auto 2rem;
     }
 
@@ -184,12 +242,10 @@ export default {
       top: -26%;
       color: #ef9494;
     }
-
   }
 }
 
 @media only screen and (width: 280px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 3) {
-
   .footer {
     margin: 0;
     &-tips {
@@ -199,7 +255,6 @@ export default {
     &-buy {
       margin: 2rem 0 3rem;
     }
-
   }
 }
 
@@ -221,6 +276,4 @@ export default {
     }
   }
 }
-
 </style>
-

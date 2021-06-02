@@ -46,11 +46,11 @@ export default {
     quantity: Number,
     toggleFavorites: Function,
     showNextCats: Function,
-    sortCats: Function,
+    sortCats: Function
   },
   methods: {
     upToTop() {
-      this.$emit('upToTop', window.pageYOffset);
+      this.$emit("upToTop", window.pageYOffset);
     }
   }
 };

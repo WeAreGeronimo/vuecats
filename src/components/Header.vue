@@ -1,6 +1,6 @@
 <template>
   <section class="header margin-0-auto flex">
-    <img class="header-logo margin-0-auto" src="img/logo.png">
+    <img class="header-logo margin-0-auto" src="img/logo.png" />
     <div class="header-menuWrapper flex j-c-space-between" id="menuWrapper">
       <div class="header-menu flex margin-0-auto">
         <a class="header-hrefs flex a-i-center j-c-center" href="#">Main</a>
@@ -14,7 +14,9 @@
       </div>
     </div>
 
-    <div class="header-bottom"><span>Найдено 349 котов</span></div>
+    <div class="header-bottom">
+      <span>Найдено котов: {{ catsArrayCount }} </span>
+    </div>
     <button class="header-burgerMenu" id="burgerButton" @click="openMenu()">
       <div class="header-buttonPart"></div>
     </button>
@@ -25,12 +27,12 @@
 export default {
   name: "Header",
   props: {
-    msg: String,
+    catsArrayCount: Number
   },
   methods: {
     openMenu() {
-      document.getElementById('burgerButton').classList.toggle('openMenu');
-      document.getElementById('menuWrapper').classList.toggle('openMenu');
+      document.getElementById("burgerButton").classList.toggle("openMenu");
+      document.getElementById("menuWrapper").classList.toggle("openMenu");
     }
   }
 };
@@ -39,7 +41,7 @@ export default {
 <style lang="scss">
 .header {
   width: 100%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #ffffff;
   padding: 1.625rem 8rem 2.125rem 8rem;
   background-image: url("../assets/header.png");
@@ -48,8 +50,8 @@ export default {
   position: relative;
   flex-wrap: wrap;
   &:after {
-    content: '';
-    background: rgba(31,32,33,0.79);
+    content: "";
+    background: rgba(31, 32, 33, 0.79);
     top: 0;
     bottom: 0;
     left: 0;
@@ -57,7 +59,8 @@ export default {
     position: absolute;
   }
 
-  &-menuWrapper, &-logo {
+  &-menuWrapper,
+  &-logo {
     z-index: 1;
   }
 
@@ -113,7 +116,7 @@ export default {
 
     &:active {
       &:before {
-        background: #6EBBD3;
+        background: #6ebbd3;
         -webkit-transition-duration: 0.05s;
         transition-duration: 0.05s;
       }
@@ -121,7 +124,7 @@ export default {
 
     &:focus {
       &:before {
-        background: #6EBBD3;
+        background: #6ebbd3;
         transform: scaleX(0.5) scaleY(0.5);
       }
     }
@@ -159,7 +162,6 @@ export default {
     margin: 0.25rem 0 0 0;
     z-index: 2;
   }
-
 }
 
 @keyframes buzzer {
@@ -205,7 +207,8 @@ export default {
   }
 }
 
-@media screen and (min-width: 279px) and (max-width: 927px) and (orientation: portrait), (min-height: 279px) and (max-height: 654px) and (orientation: landscape) {
+@media screen and (min-width: 279px) and (max-width: 927px) and (orientation: portrait),
+  (min-height: 279px) and (max-height: 654px) and (orientation: landscape) {
   .header {
     display: flex;
     align-items: center;
@@ -228,8 +231,8 @@ export default {
       padding: 0;
       margin: 0 auto;
       &:after {
-        content: '';
-        background: rgba(31,32,33,0.96);
+        content: "";
+        background: rgba(31, 32, 33, 0.96);
         top: 0;
         bottom: 0;
         left: 0;
@@ -249,14 +252,14 @@ export default {
     }
 
     &-hrefs {
-      margin: .2rem 0 .5rem;
+      margin: 0.2rem 0 0.5rem;
       justify-content: left;
       justify-content: start;
     }
 
     &-menuWrapper.openMenu {
       padding: 8px 24px 8px 10px;
-      top:0;
+      top: 0;
       left: 0;
     }
 
@@ -270,9 +273,10 @@ export default {
       border: none;
       padding: 0;
       margin: 0 auto;
-      &:before, &:after {
+      &:before,
+      &:after {
         transition: all 0.3s ease-in;
-        content: '';
+        content: "";
         display: block;
         width: inherit;
         height: 0.33rem;
@@ -301,7 +305,7 @@ export default {
       top: 75%;
     }
 
-    &-burgerMenu.openMenu  {
+    &-burgerMenu.openMenu {
       &:before {
         transform: rotate(45deg);
         top: 25px;
@@ -327,16 +331,12 @@ export default {
     &-call {
       align-self: flex-end;
     }
-
-
   }
-
-
 }
 
 @media only screen and (width: 280px) and (width: 653px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 3) {
   .header {
-    background: #1F2021;
+    background: #1f2021;
     &-burgerMenu {
       width: 2rem;
       height: 2.8rem;
@@ -345,7 +345,6 @@ export default {
       width: 2rem;
       height: 2rem;
     }
-
   }
 }
 
@@ -359,7 +358,7 @@ export default {
         }
       }
       &:active {
-        color: #6EBBD3;
+        color: #6ebbd3;
       }
     }
 
@@ -374,21 +373,23 @@ export default {
         -webkit-animation-iteration-count: 1;
         animation-iteration-count: 1;
       }
-
     }
-
   }
-
 }
 
 @media (min-width: 1441px) {
-
   .header {
     background-size: contain;
     background-position: center;
     &:before {
-      content: '';
-      background: linear-gradient(90deg, #1a1a1c 0%, #010101 50%, #292826 51%, #30281f 100%);
+      content: "";
+      background: linear-gradient(
+        90deg,
+        #1a1a1c 0%,
+        #010101 50%,
+        #292826 51%,
+        #30281f 100%
+      );
       top: 0;
       bottom: 0;
       left: 0;
@@ -396,9 +397,6 @@ export default {
       position: absolute;
       z-index: -1;
     }
-
   }
 }
-
 </style>
-
