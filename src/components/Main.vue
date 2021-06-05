@@ -378,8 +378,7 @@ export default {
     }
 
     &-sort {
-      width: unset;
-      margin: unset;
+      margin: 0 0 0 1rem;
     }
 
     &-agesWrapper,
@@ -423,6 +422,11 @@ export default {
     &-bottomBar {
       width: 100%;
     }
+
+    &-like {
+      width: 4.75rem;
+      height: 3.75rem;
+    }
   }
 }
 
@@ -464,7 +468,7 @@ export default {
   }
 
   .main {
-    padding: 1rem 0 0;
+    padding: 4rem 0 0;
     width: 100%;
 
     &-item {
