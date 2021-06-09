@@ -50,7 +50,7 @@
       >
         {{ cat.name }}
       </div>
-      <div class="main-info flex j-c-space-evenly">
+      <div class="main-info flex j-c-space-around">
         <div class="main-color" title="">{{ cat.color }}</div>
         <div class="main-agesWrapper">
           <span class="main-age block">Возраст</span>
